@@ -540,15 +540,15 @@ backsql_process_sub_filter( backsql_srch_info *bsi, Filter *f,
 				bsi->bsi_op->o_tmpmemctx,
 				"bl",
 				&at->bam_sel_expr_u,
-				(ber_len_t)STRLENOF( " LIKE '" ),
-					" LIKE '" );
+				(ber_len_t)STRLENOF( " ILIKE '" ),
+					" ILIKE '" );
 
 	} else {
 		backsql_strfcat_x( &bsi->bsi_flt_where,
 				bsi->bsi_op->o_tmpmemctx,
 				"bl",
 				&at->bam_sel_expr,
-				(ber_len_t)STRLENOF( " LIKE '" ), " LIKE '" );
+				(ber_len_t)STRLENOF( " ILIKE '" ), " ILIKE '" );
 	}
  
 	if ( !BER_BVISNULL( &f->f_sub_initial ) ) {
@@ -1090,6 +1090,7 @@ backsql_process_filter_eq( backsql_srch_info *bsi, backsql_at_map_rec *at,
 	 * upper_func stuff is made for Oracle, where UPPER is
 	 * safely applicable to NUMBER etc.
 	 */
+	backsql_info		*bi = (backsql_info *)bsi->bsi_op->o_bd->be_private;
 	if ( casefold && BACKSQL_AT_CANUPPERCASE( at ) ) {
 		ber_len_t	start;
 
@@ -1098,20 +1099,17 @@ backsql_process_filter_eq( backsql_srch_info *bsi, backsql_at_map_rec *at,
 				"cbl",
 				'(', /* ) */
 				&at->bam_sel_expr_u, 
-				(ber_len_t)STRLENOF( "='" ),
-					"='" );
-
-		start = bsi->bsi_flt_where.bb_val.bv_len;
+				(ber_len_t)STRLENOF( "=" ),
+					"=" );
 
 		backsql_strfcat_x( &bsi->bsi_flt_where,
 				bsi->bsi_op->o_tmpmemctx,
-				"bl",
-				filter_value, 
-				(ber_len_t)STRLENOF( /* (' */ "')" ),
-					/* (' */ "')" );
-
-		ldap_pvt_str2upper( &bsi->bsi_flt_where.bb_val.bv_val[ start ] );
-
+		    		"blbl",
+				&bi->sql_upper_func,
+				(ber_len_t)STRLENOF( "('" ), "('",
+				filter_value,
+				(ber_len_t)STRLENOF(  "'))" ), "'))"
+		);
 	} else {
 		backsql_strfcat_x( &bsi->bsi_flt_where,
 				bsi->bsi_op->o_tmpmemctx,

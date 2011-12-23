@@ -212,7 +212,7 @@ typedef struct {
 /*
  * define to enable prettification/validation of values
  */
-#define BACKSQL_PRETTY_VALIDATE
+//#define BACKSQL_PRETTY_VALIDATE
 
 /*
  * define to enable varchars as unique keys in user tables

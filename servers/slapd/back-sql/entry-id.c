@@ -774,7 +774,6 @@ backsql_get_attr_vals( void *v_at, void *v_bsi )
 #ifdef BACKSQL_PRETTY_VALIDATE
 				if ( pretty ) {
 					struct berval	pbv;
-
 					retval = pretty( at->bam_true_ad->ad_type->sat_syntax,
 						&bv, &pbv, bsi->bsi_op->o_tmpmemctx );
 					bv = pbv;
@@ -819,7 +818,7 @@ backsql_get_attr_vals( void *v_at, void *v_bsi )
 						&bv, &nbv,
 						bsi->bsi_op->o_tmpmemctx );
 
-					if ( retval != LDAP_SUCCESS ) {
+					if ( retval != LDAP_SUCCESS && 0 /* Always ignore error */ ) {
 						char	buf[ SLAP_TEXT_BUFLEN ];
 
 						/* FIXME: we're ignoring invalid values,

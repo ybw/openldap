@@ -63,19 +63,19 @@ insert into ldap_attr_mappings (id,oc_map_id,name,sel_expr,from_tbls,join_where,
 --	oc_map_id	the "ldap_oc_mappings.id" of the main objectClass of this entry (view it as the structuralObjectClass)
 --	parent		the "ldap_entries.id" of the parent of this objectClass; 0 if it is the "suffix" of the database
 --	keyval		the value of the "keytbl.keycol" defined for this objectClass
-insert into ldap_entries (id,dn,oc_map_id,parent,keyval) values (1,'dc=example,dc=com',3,0,1);
+insert into ldap_entries (id,dn,oc_map_id,parent,keyval) values (1,'c=RU',3,0,1);
 
-insert into ldap_entries (id,dn,oc_map_id,parent,keyval) values (2,'cn=Mitya Kovalev,dc=example,dc=com',1,1,1);
+insert into ldap_entries (id,dn,oc_map_id,parent,keyval) values (2,'cn=Mitya Kovalev,c=RU',1,1,1);
 
-insert into ldap_entries (id,dn,oc_map_id,parent,keyval) values (3,'cn=Torvlobnor Puzdoy,dc=example,dc=com',1,1,2);
+insert into ldap_entries (id,dn,oc_map_id,parent,keyval) values (3,'cn=Torvlobnor Puzdoy,c=RU',1,1,2);
 
-insert into ldap_entries (id,dn,oc_map_id,parent,keyval) values (4,'cn=Akakiy Zinberstein,dc=example,dc=com',1,1,3);
+insert into ldap_entries (id,dn,oc_map_id,parent,keyval) values (4,'cn=Akakiy Zinberstein,c=RU',1,1,3);
 
-insert into ldap_entries (id,dn,oc_map_id,parent,keyval) values (5,'documentTitle=book1,dc=example,dc=com',2,1,1);
+insert into ldap_entries (id,dn,oc_map_id,parent,keyval) values (5,'documentTitle=book1,c=RU',2,1,1);
 
-insert into ldap_entries (id,dn,oc_map_id,parent,keyval) values (6,'documentTitle=book2,dc=example,dc=com',2,1,2);
+insert into ldap_entries (id,dn,oc_map_id,parent,keyval) values (6,'documentTitle=book2,c=RU',2,6,2);
 	
-insert into ldap_entries (id,dn,oc_map_id,parent,keyval) values (7,'ou=Referral,dc=example,dc=com',4,1,1);
+insert into ldap_entries (id,dn,oc_map_id,parent,keyval) values (7,'ou=Referral,c=RU',4,1,1);
 
 -- objectClass mapping: entries that have multiple objectClass instances are listed here with the objectClass name (view them as auxiliary objectClass)
 --	entry_id	the "ldap_entries.id" of the entry this objectClass value must be added

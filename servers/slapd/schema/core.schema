@@ -103,6 +103,22 @@ attributetype ( 2.5.4.6 NAME ( 'c' 'countryName' )
 #	DESC 'RFC2256: ISO-3166 country 2-letter code'
 #	SUP name SINGLE-VALUE )
 
+attributetype ( 1.2.643.3.131.1.1 NAME 'inn'
+	DESC 'Russian Cert attribute INN'
+	SUP name )
+
+attributetype ( 1.2.643.100.1 NAME 'ogrn'
+	DESC 'Russian Cert attribute'
+	SUP name )
+
+attributetype ( 1.2.643.100.3 NAME 'snils'
+	DESC 'Russian Cert attribute'
+	SUP name )
+
+attributetype ( 1.2.643.100.4 NAME 'kpp'
+	DESC 'Russian Cert attribute'
+	SUP name )
+
 attributetype ( 2.5.4.7 NAME ( 'l' 'localityName' )
 	DESC 'RFC2256: locality which this object resides in'
 	SUP name )
